@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Police</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+
+    <!-- page level plugin START-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" type="text/css" href="plugins/datatables/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="plugins/datepicker_master/jquery.datetimepicker.css"/> -->
+    <!-- page level plugin END-->
+
+    <!-- Custom CSS -->
+    <link href="css/template.css" rel="stylesheet">
+    <!-- <link href="css/responsive.css" rel="stylesheet"> -->
+
+</head>
+
+<body>
+
+    <div id="wrapper" ng-app="myApp" ng-controller="extensionShowCtrl">
+
+        <div ng-include="'nav.html'"></div>
+
+        <div id="page-wrapper" style="margin-top: 100px;">
+            <div class="main-body-content">
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="Page-heading">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1 class="page-header">
+                                    View Extension & Police Station Details
+                                    <small>Extension</small>
+                                </h1>
+                                <!-- <ol class="breadcrumb">
+                                    <li>
+                                        <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                                    </li>
+                                    <li class="active">
+                                        <i class="fa fa-file"></i> View Products
+                                    </li>
+                                </ol> -->
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <!-- Page content START-->
+                    <div class="Page-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="table-responsive">          
+                                    <table class="table">
+                                        <tbody>
+                                            <tr ng-repeat="phone in phones">
+                                                <td><b>ID</b></td>
+                                                <td>{{ phone.id }}</td>
+                                                <td><b>Thana</b></td>
+                                                <td>{{ phone.thana }}</td>
+                                            </tr>
+                                            <tr ng-repeat="phone in phones">
+                                                <td><b>District</b></td>
+                                                <td>{{ phone.district }}</td>
+                                                <td><b>Division</b></td>
+                                                <td>{{ phone.division }}</td>
+                                               
+                                            </tr>
+                                            <tr ng-repeat="phone in phones">
+                                                <td><b>Username</b></td>
+                                                <td>{{ phone.username }}</td>
+                                                <td><b>Secret</b></td>
+                                                <td>{{ phone.secret }}</td>
+                                            </tr>
+                                            <tr ng-repeat="phone in phones">
+                                                <td><b>Account Code</b></td>
+                                                <td>{{ phone.accountcode }}</td>
+                                                <td><b>Caller ID</b></td>
+                                                <td>"" <{{ phone.callerid }}></td>
+                                            </tr>
+                                            <tr ng-repeat="phone in phones">
+                                                <td><b>Mail Box</b></td>
+                                                <td>{{ phone.mailbox }}</td>
+                                                <td><b>Context</b></td>
+                                                <td>{{ phone.context }}</td>
+                                            </tr>
+                                            <tr ng-repeat="phone in phones">
+                                                <td><b>Type</b></td>
+                                                <td>{{ phone.type }}</td>
+                                                <td><b>Host</b></td>
+                                                <td>{{ phone.host }}</td>
+                                            </tr>
+                                            <tr ng-repeat="phone in phones">
+                                                <td><b>Incharge</b></td>
+                                                <td>{{ phone.incharge }}</td>
+                                                <td><b>Duty Officer</b></td>
+                                                <td>{{ phone.duty_officer }}</td>
+                                            </tr>
+                                            <tr ng-repeat="phone in phones">
+                                                <td><b>OC</b></td>
+                                                <td>{{ phone.oc }}</td>
+                                                <td><b>Address</b></td>
+                                                <td>{{ phone.address }}</td>
+                                            </tr>
+                                            <tr ng-repeat="phone in phones">
+                                                <td><b>Remarks</b></td>
+                                                <td colspan="3">{{ phone.remarks }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    
+    <!-- page level plugin START-->
+    <!-- <script type="text/javascript" src="plugins/datatables/datatables.min.js"></script>
+    <script src="plugins/datepicker_master/jquery.datetimepicker.full.js"></script>">
+    <script src="plugins/tinymce/tinymce.min.js"></script> -->
+    <!-- page level plugin END-->
+    
+    <!-- <script src="js/custom.js"></script> -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js"></script>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('extensionShowCtrl', function($scope, $http) {
+            var url_string = window.location.href;
+            var url = new URL(url_string);
+            var extensionId = url.searchParams.get("extension_id");
+            $http.get("extension_mysql.php?extension_id=" + extensionId)
+           .then(function (response) {$scope.phones = response.data.records;});
+        });
+    </script>
+    
+
+</body>
+
+</html>

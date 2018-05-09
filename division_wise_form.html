@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Police</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+
+    <!-- page level plugin START-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="plugins/datatables/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="plugins/datepicker_master/jquery.datetimepicker.css"/>
+    <!-- page level plugin END-->
+
+    <!-- Custom CSS -->
+    <link href="css/template.css" rel="stylesheet">
+    <!-- <link href="css/responsive.css" rel="stylesheet"> -->
+
+</head>
+
+<body>
+
+    <div id="wrapper" ng-app="myApp" ng-controller="divisionSelectCtrl">
+
+        <div ng-include="'nav.html'"></div>
+
+        <div id="page-wrapper" style="margin-top: 100px;">
+            <div class="main-body-content">
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="Page-heading">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1 class="page-header">
+                                    Division Wise Police Station Search
+                                    <small>Select Division then Submit</small>
+                                </h1>
+                                <!-- <ol class="breadcrumb">
+                                    <li>
+                                        <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                                    </li>
+                                    <li class="active">
+                                        <i class="fa fa-file"></i> Create Brands
+                                    </li>
+                                </ol> -->
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div>
+
+                    <!-- Page content START-->
+                    <div class="Page-body">
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <b>Division Wise Police Station Search</b>
+                                    </div>
+
+                                    <div class="panel-body">
+                                        
+                                        <form action="division_wise_show.html" method="get">
+                                        	<div class="form-group">
+                                                <label>Select Division</label>
+                                                <select class="form-control" required="required" name="division_id">
+                                                		<option value="">Select Division</option>
+                                                    	<option ng-repeat="division in divisions" value="{{ division.id }}">{{ division.name }}</option>
+                                                </select>
+                                        	</div>
+                                            <div class="">
+                                                <button  class="btn btn-info pull-right  margin-left-10">Submit for Division Wise Police Station</button> 
+                                            </div>
+                                        </form>
+                                            
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    
+    <!-- page level plugin START-->
+    <script type="text/javascript" src="plugins/datatables/datatables.min.js"></script>
+    <script src="plugins/datepicker_master/jquery.datetimepicker.full.js"></script>">
+    <!-- page level plugin END-->
+    
+    <!-- <script src="js/custom.js"></script> -->
+
+    <script>
+		var app = angular.module('myApp', []);
+		app.controller('divisionSelectCtrl', function($scope, $http) {
+		    $http.get("division_select_mysql.php")
+		    .then(function (response) {$scope.divisions = response.data.records;});
+		});
+	</script>
+
+</body>
+
+</html>

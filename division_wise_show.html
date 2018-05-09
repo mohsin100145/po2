@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Police</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <!-- <link href="css/plugins/morris.css" rel="stylesheet"> -->
+    
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/template.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+
+    <style type="text/css">
+        .side-nav {
+    
+     left: 0px; 
+    }
+    </style>
+
+    <style type="text/css">
+        table tr th{
+          background:#337ab7;
+          color:white;
+          text-align:left;
+          vertical-align:center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="wrapper" ng-app="myApp" ng-controller="divisionWiseCtrl">
+
+       <div ng-include="'nav.html'"></div>
+
+        <div id="page-wrapper" style="margin-top: 100px;">
+            <div class="main-body-content">
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="Page-heading">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1 class="page-header"> 
+                                    <span ng-repeat="phone in phones | limitTo:1">
+                                        {{phone.division}} Division Wise <small>Phone Extensions and Police Stations Deatails</small>
+                                    </span>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                    
+                    <!-- Page content START-->
+                    <div class="Page-body">
+                        <div class="row">
+                            
+                            <div class="col-sm-12">
+                                <div class="table-responsive">
+                                    
+                                    <div class="col-sm-2">
+                                        <input class="form-control" ng-model="username" type="text" placeholder="Username Search">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input class="form-control" ng-model="district" type="text" placeholder="District Search">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input class="form-control" ng-model="division" type="text" placeholder="Division Search">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input class="form-control" ng-model="thana" type="text" placeholder="P.S.(Thana) Search">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input class="form-control" ng-model="oc" type="text" placeholder="OC Search">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input class="form-control" ng-model="address" type="text" placeholder="Address Search">
+                                    </div>
+
+                                    <table class="table table-bordered bordered table-striped table-condensed datatable" ui-jq="dataTable" ui-options="dataTableOpt">
+                                        
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Username</th>
+                                                <th>District</th>
+                                                <th>Division</th>
+                                                <th>Police Station</th>
+                                                <th>Duty Officer Information</th>
+                                                <th>OC Information</th>
+                                                <th>Address</th>
+                                                <th>View</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="phone in phones | filter: {username: username} | filter: {district: district} | filter: {division: division} | filter: {thana: thana} | filter: {oc: oc} | filter: {address: address}">
+                                                <td>{{ phone.id }}</td>
+                                                <td>{{ phone.username }}</td>
+                                                <td>{{ phone.district }}</td>
+                                                <td>{{ phone.division }}</td>
+                                                <td>{{ phone.thana }}</td>
+                                                <td>{{ phone.duty_officer }}</td>
+                                                <td>{{ phone.oc }}</td>
+                                                <td>{{ phone.address }}</td>
+                                                <td><a href="/thana/extension_show.html?extension_id={{ phone.id }}"><button type="button" class="btn btn-success btn-xs"><i class="fa fa-fw fa-eye"></i> Details</button></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>  
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.0.0/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-utils/0.1.1/angular-ui-utils.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+
+    <!-- custom plugins-->
+    <!-- <script src="js/custom.js"></script> -->
+
+    <script type="text/javascript">
+        //Angularjs and jquery.datatable with ui.bootstrap and ui.utils
+        var app=angular.module('myApp', ['ui.bootstrap','ui.utils']);
+        app.controller('divisionWiseCtrl',function($scope, $http){
+            var url_string = window.location.href;
+            var url = new URL(url_string);
+            var divisionId = url.searchParams.get("division_id");
+            $http.get("division_mysql.php?division_id=" + divisionId)
+            .then(function (response) {$scope.phones = response.data.records;});  
+            $scope.dataTableOpt = {
+                //custom datatable options 
+                // or load data through ajax call also
+                "aLengthMenu": [[10, 50, 100,-1], [10, 50, 100,'All']],
+            };
+        });
+    </script>
+
+</body>
+
+</html>
