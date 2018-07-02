@@ -28,6 +28,12 @@
     <!-- Custom CSS -->
     <link href="css/template.css" rel="stylesheet">
     <!-- <link href="css/responsive.css" rel="stylesheet"> -->
+    <style type="text/css">
+        .navbar-inverse .navbar-nav>li>a {
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+    </style>
 
 </head>
 
@@ -93,7 +99,7 @@
                                                 <label>Select Police Station</label>
                                                 <select class="form-control" required="required" name="extension_id" >
                                                 		<option value="">Select District</option>
-                                                    	<option ng-repeat="phone in phones" value="{{ phone.id }}">{{ phone.thana }}</option>
+                                                    	<option ng-repeat="phone in phones" value="{{ phone.id }}">{{ phone.police_station }}</option>
                                                 </select>
                                         	</div>
                                         	

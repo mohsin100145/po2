@@ -90,7 +90,7 @@
                                         <input class="form-control" ng-model="division" type="text" placeholder="Division Search">
                                     </div>
                                     <div class="col-sm-2">
-                                        <input class="form-control" ng-model="thana" type="text" placeholder="P.S.(Thana) Search">
+                                        <input class="form-control" ng-model="police_station" type="text" placeholder="P.S.(Thana) Search">
                                     </div>
                                     <div class="col-sm-2">
                                         <input class="form-control" ng-model="oc" type="text" placeholder="OC Search">
@@ -115,12 +115,12 @@
             		                        </tr>
             		                    </thead>
             		                    <tbody>
-                                            <tr ng-repeat="phone in phones | filter: {username: username} | filter: {district: district} | filter: {division: division} | filter: {thana: thana} | filter: {oc: oc} | filter: {address: address}">
+                                            <tr ng-repeat="phone in phones | filter: {username: username} | filter: {district: district} | filter: {division: division} | filter: {police_station: police_station} | filter: {oc: oc} | filter: {address: address}">
                                                 <td>{{ phone.id }}</td>
             								    <td>{{ phone.username }}</td>
             								    <td>{{ phone.district }}</td>
                                                 <td>{{ phone.division }}</td>
-                                                <td>{{ phone.thana }}</td>
+                                                <td>{{ phone.police_station }}</td>
                                                 <td>{{ phone.duty_officer }}</td>
                                                 <td>{{ phone.oc }}</td>
                                                 <td>{{ phone.address }}</td>

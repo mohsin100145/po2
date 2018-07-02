@@ -4,7 +4,7 @@
 
 include 'db_conn_mysql.php';
 
-$result = $conn->query("SELECT phones.id, phones.username, districts.name AS district, divisions.name AS division, phones.thana, phones.incharge, phones.duty_officer, phones.oc, phones.address, phones.remarks
+$result = $conn->query("SELECT phones.id, phones.username, districts.name AS district, divisions.name AS division, phones.police_station, phones.incharge, phones.duty_officer, phones.oc, phones.address, phones.remarks
 FROM phones
 INNER JOIN districts ON phones.district_id=districts.id
 INNER JOIN divisions ON phones.division_id=divisions.id");
@@ -16,7 +16,7 @@ while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
     $outp .= '"username":"'   . $rs["username"]        . '",';
     $outp .= '"district":"'   . $rs["district"]        . '",';
     $outp .= '"division":"'   . $rs["division"]        . '",';
-    $outp .= '"thana":"'   . $rs["thana"]        . '",';
+    $outp .= '"police_station":"'   . $rs["police_station"]        . '",';
     $outp .= '"incharge":"'   . $rs["incharge"]        . '",';
     $outp .= '"duty_officer":"'   . $rs["duty_officer"]        . '",';
     $outp .= '"oc":"'   . $rs["oc"]        . '",';

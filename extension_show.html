@@ -28,6 +28,12 @@
     <!-- Custom CSS -->
     <link href="css/template.css" rel="stylesheet">
     <!-- <link href="css/responsive.css" rel="stylesheet"> -->
+    <style type="text/css">
+        .navbar-inverse .navbar-nav>li>a {
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+    </style>
 
 </head>
 
@@ -72,8 +78,8 @@
                                             <tr ng-repeat="phone in phones">
                                                 <td><b>ID</b></td>
                                                 <td>{{ phone.id }}</td>
-                                                <td><b>Thana</b></td>
-                                                <td>{{ phone.thana }}</td>
+                                                <td><b>Police Station</b></td>
+                                                <td>{{ phone.police_station }}</td>
                                             </tr>
                                             <tr ng-repeat="phone in phones">
                                                 <td><b>District</b></td>
